@@ -1,0 +1,5 @@
+Serial Time: 16.301828 secs
+Parallel Time: 3.878835 secs
+Parallel Result = 3144543.496083
+Serial Result   = 3144543.496082
+Relative Error  = 2.622594e-13
