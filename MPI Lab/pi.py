@@ -13,7 +13,7 @@ def parallel_mc_pi(n, comm, p_root=0):
   myCount = mc_pi(n/size)
 
   # Reduce the partial results to the root process
-  totalCount = comm.reduce(local_dot, op=MPI.SUM, root=p_root)
+  totalCount = comm.reduce(myCount, op=MPI.SUM, root=p_root)
   return totalCount
 
 

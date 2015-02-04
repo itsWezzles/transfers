@@ -23,6 +23,8 @@ def parallel_dot(a, b, comm, p_root=0):
   start = rank * numtasks / size
   end = (rank * numtasks / size) - 1
 
+  print "Rank %d, start: %d, end: %d" % (rank, start, end)
+
   # Compute the partial dot product
   local_dot = serial_dot(a[start:end], b[start:end])
 
