@@ -1,12 +1,12 @@
 import numpy as np
 import time
 
-def mc_pi(n):
+def mc_pi(n, seed=0):
   '''Computes pi using an Monte Carlo method by testing
      @param n random points inside unit square for being inside unit circle'''
   
   # Set the random seed
-  np.random.seed(0) 
+  np.random.seed(seed) 
 
   # Set counter
   count = 0

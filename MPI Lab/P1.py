@@ -21,7 +21,7 @@ def parallel_dot(a, b, comm, p_root=0):
 
   # Start and end indices of the local dot product computed by function to allow for undivisble sizes
   start = rank * numtasks / size
-  end = ((rank+1) * numtasks / size) - 1
+  end = ((rank+1) * numtasks / size)
 
   print "Rank %d, start: %d, end: %d" % (rank, start, end)
 

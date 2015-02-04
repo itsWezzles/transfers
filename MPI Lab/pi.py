@@ -7,10 +7,11 @@ from piserial import mc_pi
 def parallel_mc_pi(n, comm, p_root=0):
   '''Distributes the computation of @param n test points to compute pi to various processors
      Calls mc_pi which will be run per process'''
+  rank = comm.Get_rank()
   size = comm.Get_size()
 
   # compute local answer
-  myCount = mc_pi(n/size)
+  myCount = mc_pi(n/size, seed=rank)
   print "rank: %d, myCount; %d)" % (rank, myCount)
   # Reduce the partial results to the root process
   totalCount = comm.reduce(myCount, op=MPI.SUM, root=p_root)
@@ -28,9 +29,16 @@ if __name__ == '__main__':
   numPoints = 200000
   comm.barrier()
   p_start = MPI.Wtime()
-  p_answer = (4.0 * parallel_mc_pi(numPoints, comm)) / numPoints
+
+  # all processors return, some wil return None
+  # could replace this with allReduce but unnecessary
+  p_answer = parallel_mc_pi(numPoints, comm)
   comm.barrier()
   p_stop = MPI.Wtime()
+
+  # we only care a out rank 0 root answer
+  if rank == 0:
+    p_answer = (4.0 * p_answer) / numPoints
 
   # Compare to serial results on process 0
   if rank == 0:
