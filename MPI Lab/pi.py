@@ -23,17 +23,17 @@ if __name__ == '__main__':
 
   
   # use numPoints points in MC 
-  numPoints = 200000.
+  numPoints = 200000
   comm.barrier()
   p_start = MPI.Wtime()
-  p_answer = 4.0 * parallel_mc_pi(numPoints, comm) / numPoints
+  p_answer = (4.0 * parallel_mc_pi(numPoints, comm)) / numPoints
   comm.barrier()
   p_stop = MPI.Wtime()
 
   # Compare to serial results on process 0
   if rank == 0:
     s_start = time.time()
-    s_answer = mc_pi(numPoints)
+    s_answer = (4 * mc_pi(numPoints)) / numPoints
     s_stop = time.time()
     print "Serial Time: %f secs" % (s_stop - s_start)
     print "Parallel Time: %f secs" % (p_stop - p_start)

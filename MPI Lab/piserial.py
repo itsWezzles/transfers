@@ -22,10 +22,10 @@ def mc_pi(n):
 if __name__ == '__main__':
 
   # use numPoints points in MC 
-  numPoints = 200000.
+  numPoints = 200000
 
   s_start = time.time()
-  s_answer = 4.0 * mc_pi(numPoints) / numPoints
+  s_answer = (4.0 * mc_pi(numPoints)) / numPoints
   s_stop = time.time()
   print "Serial Time: %f secs" % (s_stop - s_start)
 
