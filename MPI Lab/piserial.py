@@ -22,7 +22,7 @@ def mc_pi(n, seed=0):
 if __name__ == '__main__':
 
   # use numPoints points in MC 
-  numPoints = 200000000
+  numPoints = 10000000
 
   s_start = time.time()
   s_answer = (4.0 * mc_pi(numPoints)) / numPoints
