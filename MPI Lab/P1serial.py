@@ -14,7 +14,6 @@ def serial_dot(a, b):
     result += a[k]*b[k]
   return result
 
-
 if __name__ == '__main__':
   # Get big arrays
   a, b = get_big_arrays()

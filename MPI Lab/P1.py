@@ -19,9 +19,10 @@ def parallel_dot(a, b, comm, p_root=0):
   # Save the number of tasks to a varaible
   numtasks = len(a)
 
-  # Start and end indices of the local dot product computed by function to allow for undivisble sizes
-  start = rank * numtasks / size
-  end = ((rank+1) * numtasks / size)
+  # Start and end indices of the local dot product
+  # possible issue here?
+  start = rank * int(numtasks / size)
+  end = ((rank+1) * int(numtasks / size)
 
   # sanity check print statements
   # print "Rank %d, start: %d, end: %d" % (rank, start, end)

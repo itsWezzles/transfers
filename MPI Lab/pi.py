@@ -20,7 +20,6 @@ def parallel_mc_pi(n, comm, p_root=0):
   totalCount = comm.reduce(myCount, op=MPI.SUM, root=p_root)
   return totalCount
 
-
 if __name__ == '__main__':
   comm = MPI.COMM_WORLD
   rank = comm.Get_rank()
