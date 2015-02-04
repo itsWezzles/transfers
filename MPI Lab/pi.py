@@ -12,21 +12,21 @@ def parallel_mc_pi(n, comm, p_root=0):
 
   # compute local answer
   myCount = mc_pi(n/size, seed=rank)
-  print "rank: %d, myCount; %d)" % (rank, myCount)
+
+  # sanity check print statements
+  # print "rank: %d, myCount: %d" % (rank, myCount)
+
   # Reduce the partial results to the root process
   totalCount = comm.reduce(myCount, op=MPI.SUM, root=p_root)
-  if rank == 0:
-    print "rank 0 total count" + str(totalCount)
   return totalCount
 
 
 if __name__ == '__main__':
   comm = MPI.COMM_WORLD
   rank = comm.Get_rank()
-
   
   # use numPoints points in MC 
-  numPoints = 200000
+  numPoints = 200000000
   comm.barrier()
   p_start = MPI.Wtime()
 
@@ -43,7 +43,7 @@ if __name__ == '__main__':
   # Compare to serial results on process 0
   if rank == 0:
     s_start = time.time()
-    s_answer = (4 * mc_pi(numPoints)) / numPoints
+    s_answer = (4.0 * mc_pi(numPoints)) / numPoints
     s_stop = time.time()
     print "Serial Time: %f secs" % (s_stop - s_start)
     print "Parallel Time: %f secs" % (p_stop - p_start)
