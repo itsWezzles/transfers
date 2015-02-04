@@ -22,7 +22,7 @@ def parallel_dot(a, b, comm, p_root=0):
   # Start and end indices of the local dot product
   # possible issue here?
   start = rank * int(numtasks / size)
-  end = ((rank+1) * int(numtasks / size)
+  end = ((rank+1) * int(numtasks / size))
 
   # sanity check print statements
   # print "Rank %d, start: %d, end: %d" % (rank, start, end)

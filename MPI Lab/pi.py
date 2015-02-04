@@ -25,7 +25,7 @@ if __name__ == '__main__':
   rank = comm.Get_rank()
   
   # use numPoints points in MC 
-  numPoints = 10000000
+  numPoints = 1000000
   comm.barrier()
   p_start = MPI.Wtime()
 
