@@ -11,9 +11,11 @@ def parallel_mc_pi(n, comm, p_root=0):
 
   # compute local answer
   myCount = mc_pi(n/size)
-
+  print "rank: %d, myCount; %d)" % (rank, myCount)
   # Reduce the partial results to the root process
   totalCount = comm.reduce(myCount, op=MPI.SUM, root=p_root)
+  if rank == 0:
+    print "rank 0 total count" + str(totalCount)
   return totalCount
 
 
