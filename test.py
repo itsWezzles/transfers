@@ -12,10 +12,8 @@ if __name__ == '__main__':
   comm = MPI.COMM_WORLD
   rank = comm.Get_rank()
 
-  # Get big arrays on process 0
-  a, b = None, None
-  if rank == 0:
-    a, b = get_big_arrays()
+  a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  b = [1, 2, 3, 4]
 
   a = comm.scatter(a)
   b = comm.scatter(b)
